@@ -25,22 +25,35 @@ submit.addEventListener("click", () => {
   weather.then((response) => {
     return response.json()
   }).then((data) => {
-    console.log(data)
-    console.log(data.weather[0].main)
-    
     if(data.weather[0].main === "Thunderstorm" || data.weather[0].main === "Tornado" ){
+      north.style.display = 'none'
+      clouds.style.display = 'none'
+      sunny.style.display = 'none'
+      rain.style.display = 'none'
       thunderstorm.style.display = 'block'
     }
     
     if ( data.weather[0].main === "Drizzle" || data.weather[0].main === "Rain") {
+      north.style.display = 'none'
+      thunderstorm.style.display = 'none'
+      clouds.style.display = 'none'
+      sunny.style.display = 'none'
       rain.style.display = 'block';
     }
 
     if(data.weather[0].main === "Snow"){
+      thunderstorm.style.display = 'none'
+      clouds.style.display = 'none'
+      sunny.style.display = 'none'
+      rain.style.display = 'none';
       north.style.display = 'block'
     }
     
     if ( data.weather[0].main === "Clear") {
+      thunderstorm.style.display = 'none'
+      clouds.style.display = 'none'
+      rain.style.display = 'none';
+      north.style.display = 'none'
       sunny.style.display = 'block';
     }
     
@@ -49,7 +62,10 @@ submit.addEventListener("click", () => {
       || data.weather[0].main === "Haze" || data.weather[0].main === "Dust"
       || data.weather[0].main === "Fog" || data.weather[0].main === "Sand"
       || data.weather[0].main === "Dust" || data.weather[0].main === "Ash" || data.weather[0].main === "Squall"|| data.weather[0].main === "Clouds") {
-
+      thunderstorm.style.display = 'none'
+      rain.style.display = 'none';
+      north.style.display = 'none'
+      sunny.style.display = 'none';
       clouds.style.display = 'block';
 
     }
@@ -99,7 +115,7 @@ setInterval(function() {
   let month = MonthNames[present_date.getMonth()]
   let date_ = present_date.getDate()
   let year = present_date.getFullYear()
-  console.log()
+
   let current_hours = present_date.getHours()
   let current_minutes = present_date.getMinutes()
   time.innerHTML = `${current_hours}:${current_minutes}`
